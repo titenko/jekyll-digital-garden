@@ -68,6 +68,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <link rel="manifest" href="{{ site.baseurl }}/manifest.json">
     <link rel="manifest" href="{{ site.baseurl }}/manifest.webmanifest">
+    <script>
+    if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('{{ site.baseurl }}/service-worker.js');
+    }
+    </script>
 </head>
 
 <body>
