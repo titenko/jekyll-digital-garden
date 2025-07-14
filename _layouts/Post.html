@@ -12,6 +12,16 @@
     <meta content="{{ site.title | default: site.heading }}" property="og:site_name" />
     <meta content="{{ site.description | default: 'A Jekyll Garden site' }}" property="og:description">
     <meta content="{{ site.url }}/about/" property="article:author">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="{{ site.baseurl }}/manifest.json" />
+    <meta name="theme-color" content="#18181c">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="{{ site.title }}">
+    <meta name="application-name" content="{{ site.title }}">
+    <meta name="description" content="{{ site.description }}">
+    <link rel="apple-touch-icon" href="{{ site.baseurl }}/icons/icon-192.png">
+    <!-- PWA Manifest -->
     {%- if site.og_image -%}
     <meta property="og:image" content="{{ site.baseurl }}{{ site.og_image }}">
     {%- endif -%}
