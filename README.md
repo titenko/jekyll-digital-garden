@@ -2,15 +2,15 @@
 
 Main page:
 
-![screenshot](https://github.com/titenko/jekyll-garden/blob/main/assets/img/Screenshot-Jekyll-Garden-New.png)
+![screenshot](https://github.com/titenko/jekyll-digital-garden/blob/main/assets/img/Screenshot-Jekyll-Garden-New.png)
 
 Menu:
 
-![screenshot](https://github.com/titenko/jekyll-garden/blob/main/assets/img/Screenshot-Jekyll-Garden-New-Menu.png)
+![screenshot](https://github.com/titenko/jekyll-digital-garden/blob/main/assets/img/Screenshot-Jekyll-Garden-New-Menu.png)
 
 Search
 
-![screenshot](https://github.com/titenko/jekyll-garden/blob/main/assets/img/Screenshot-Jekyll-Garden-New-Search.png)
+![screenshot](https://github.com/titenko/jekyll-digital-garden/blob/main/assets/img/Screenshot-Jekyll-Garden-New-Search.png)
 
 A simple Jekyll theme that turns your Obsidian notes into a beautiful website. 
 
