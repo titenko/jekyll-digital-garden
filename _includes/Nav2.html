@@ -1,0 +1,372 @@
+<style>
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    margin-bottom: 1rem;
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    position: relative;
+    z-index: 1000;
+    padding: 1rem;
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .logo {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+.site-icon {
+  all: unset;
+  width: 32px;
+  height: 32px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo-link:hover {
+  color: inherit;
+}
+
+.logo-link .site-title,
+.site-title {
+  margin-left: 0.5rem;
+  font-weight: 600;
+  line-height: 1;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  text-decoration: none;
+}
+
+  .hamburger {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--title);
+  }
+
+  .hamburger.active svg {
+    transform: rotate(90deg);
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    pointer-events: none;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .dropdown.active .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .dropdown-menu a {
+    color: var(--text);
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: var(--scale-base);
+    transition: background 0.3s;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .dropdown-menu a:hover {
+    background: var(--bg2);
+    color: var(--brand);
+  }
+
+  /* === ПОИСК === */
+  .dropdown-search {
+    display: flex;
+    align-items: center;
+  }
+
+  .search-button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: var(--text);
+    flex-shrink: 0;
+  }
+
+  .header-container .dropdown-search-menu {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    pointer-events: none;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .dropdown-search-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .search-input {
+    width: 100%;
+    max-width: 760px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    background: var(--bg2);
+    color: var(--text);
+    outline-offset: 2px;
+  }
+
+      .search-results {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding-bottom: 1rem;
+      /* Динамическая высота */
+      height: auto;
+      min-height: 0;
+      max-height: none;
+      /* Отключение прокрутки */
+      overflow: visible;
+      /* Плавная анимация изменения высоты */
+      transition: height 0.3s ease;
+    }
+
+    .search-result-item {
+      padding: 0.5rem !important;
+      border-radius: 0.3rem !important;
+      text-decoration: none !important;
+      color: var(--text) !important;
+      display: block !important;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    .search-result-item:hover {
+      background: var(--bg2) !important;
+      border-color: var(--border);
+      transform: translateY(-1px);
+    }
+
+    .search-result-item strong {
+      color: var(--title);
+    }
+
+    .search-result-item small {
+      color: #666;
+      font-size: 0.875rem;
+    }
+
+    .search-placeholder {
+      padding: 0.5rem;
+      text-align: center;
+      color: #666;
+      font-style: italic;
+    }
+
+  .theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: var(--text);
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 768px) {
+    .nav {
+      padding: 0.75rem 1rem;
+    }
+
+    .dropdown-menu,
+    .dropdown-search-menu {
+      width: 100%;
+      left: 0;
+      max-width: 100%;
+    }
+
+    .search-input {
+      width: 100%;
+    }
+
+    .search-results {
+      width: 100%;
+    }
+  }
+</style>
+
+  <div class="header-container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a href="/" class="logo-link">
+          <img src="{{ site.baseurl }}/assets/img/icon.png" alt="Site Icon" class="site-icon" width="32" height="32" />
+          <span class="site-title">Your Site Title</span>
+        </a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+           <span class="icon-sun" style="display: none;">
+        <!-- Sun Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" width="24" height="24" fill="currentColor">
+          <path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5 S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5 C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6 C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9 c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44 l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5 c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06 L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2 C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29 c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7 C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5 c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"/>
+        </svg>
+      </span>
+      <span class="icon-moon" style="display: none;">
+        <!-- Moon Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="24" height="24" fill="currentColor">
+          <path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571 C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23 c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369 c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65 c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"/>
+        </svg>
+      </span>
+        </button>
+        <div class="dropdown-search">
+          <div class="search-button" role="button" tabindex="0" aria-label="Search" title="Search">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 21L15.8 15.8M18 10.5C18 14.0899 15.0899 17 11.5 17C7.91015 17 5 14.0899 5 10.5C5 6.91015 7.91015 4 11.5 4C15.0899 4 18 6.91015 18 10.5Z"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="dropdown">
+          <div class="hamburger" role="button" tabindex="0" aria-label="Menu" title="Menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 3H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3 21H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="dropdown-menu">
+            <a href="/notes">Notes</a>
+            <a href="/blog">Blog</a>
+            <a href="/about">About</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="dropdown">
+    <div class="dropdown-search-menu">
+      <input id="search-input" type="search" class="search-input" placeholder="Search..." autocomplete="off" />
+      <div id="search-results" class="search-results">
+        <div class="search-placeholder">Enter your search query</div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lunr.js и твой Search.js -->
+  <script src="/assets/js/vendor/lunr.min.js"></script>
+  <script src="/assets/js/Search.js"></script>
+
+  <script>
+    // Управление меню и поиском (только открытие/закрытие)
+    const hamburger = document.querySelector('.hamburger');
+    const dropdown = document.querySelector('.dropdown');
+    const searchBtn = document.querySelector('.search-button');
+    const dropdownSearch = document.querySelector('.dropdown-search');
+    const dropdownSearchMenu = document.querySelector('.dropdown-search-menu');
+    const searchInput = document.getElementById('search-input');
+
+    hamburger.addEventListener('click', e => {
+      e.stopPropagation();
+      dropdown.classList.toggle('active');
+      hamburger.classList.toggle('active');
+      dropdownSearch.classList.remove('active');
+      dropdownSearchMenu.classList.remove('active');
+      searchInput.value = '';
+    });
+
+    searchBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      if (dropdownSearch.classList.contains('active')) {
+        dropdownSearch.classList.remove('active');
+        dropdownSearchMenu.classList.remove('active');
+        searchInput.value = '';
+        searchInput.blur();
+      } else {
+        dropdownSearch.classList.add('active');
+        dropdownSearchMenu.classList.add('active');
+        searchInput.focus();
+      }
+      dropdown.classList.remove('active');
+      hamburger.classList.remove('active');
+    });
+
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.dropdown')) {
+        dropdown.classList.remove('active');
+        hamburger.classList.remove('active');
+      }
+      if (!e.target.closest('.dropdown-search') && !e.target.closest('.dropdown-search-menu')) {
+        dropdownSearch.classList.remove('active');
+        dropdownSearchMenu.classList.remove('active');
+        searchInput.value = '';
+      }
+    });
+  </script>
+
+
+

@@ -1,0 +1,33 @@
+name: Scheduled Auto Merge Dependabot PRs
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # ежедневно в 6 утра UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install GitHub CLI
+        run: sudo apt-get install gh -y
+
+      - name: List and merge Dependabot PRs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr list --author dependabot[bot] --state open --json number,title \
+            --jq '.[] | "\(.number) - \(.title)"'
+
+          for pr in $(gh pr list --author dependabot[bot] --state open --json number --jq '.[].number'); do
+            echo "Merging PR #$pr"
+            gh pr merge $pr --squash --admin --delete-branch || echo "Failed to merge PR #$pr"
+          done

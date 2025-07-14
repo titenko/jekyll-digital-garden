@@ -1,0 +1,34 @@
+version: 2
+updates:
+  # Обновления npm-зависимостей
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      production-dependencies:
+        applies-to: "version-updates"
+        patterns:
+          - "*"
+
+  # Обновления GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      ci-dependencies:
+        applies-to: "version-updates"
+        patterns:
+          - "*"
+
+  # ✅ Добавлено: обновления Ruby-гемов (Jekyll использует Bundler)
+  - package-ecosystem: "bundler"
+    directory: "/"  # Путь, где находится Gemfile
+    schedule:
+      interval: "weekly"
+    groups:
+      ruby-gems:
+        applies-to: "version-updates"
+        patterns:
+          - "*"
