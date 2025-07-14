@@ -1,19 +1,19 @@
 {
   "name": "jekyll-digital-garden",
   "short_name": "digital-garden",
-  "start_url": "https://titenko.github.io/jekyll-digital-garden/",
+  "start_url": "https://titenko.github.io/jekyll-digital-garden",
   "display": "standalone",
   "background_color": "#18181c",
   "theme_color": "#18181c",
   "description": "{{ site.description | escape }}",
   "icons": [
     {
-      "src": "{{ site.baseurl }}/assets/icons/icon-192.png",
+      "src": "/assets/icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "{{ site.baseurl }}/assets/icons/icon-512.png",
+      "src": "/assets/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
