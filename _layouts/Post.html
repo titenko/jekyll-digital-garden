@@ -3,12 +3,12 @@
 
 <head>
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <script>
+    <!--<script>
     (function () {
       const savedTheme = localStorage.getItem('theme') || 'dark';
       document.documentElement.setAttribute('data-theme', savedTheme);
     })();
-    </script>
+    </script> -->
     <meta content="{{ site.title | default: site.heading }}" property="og:site_name" />
     <meta content="{{ site.description | default: 'A Jekyll Garden site' }}" property="og:description">
     <meta content="{{ site.url }}/about/" property="article:author">
@@ -150,5 +150,13 @@
             {%- include Footer.html -%}
         </div>
     </div>
+    
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  });
+</script>
+    
 </body>
 </html> 
