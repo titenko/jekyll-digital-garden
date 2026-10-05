@@ -15,7 +15,7 @@ gem "jekyll", "~> 4.3"
 # gem "github-pages", group: :jekyll_plugins
 # If you have any plugins, put them here!
 group :jekyll_plugins do
-  gem "jekyll-feed", "~> 0.17" # обновлённая стабильная версия
+  gem "jekyll-feed", "~> 0.18" # обновлённая стабильная версия
   gem "jekyll-tidy"
   gem "jekyll-sitemap"
   gem "kramdown-math-katex"
